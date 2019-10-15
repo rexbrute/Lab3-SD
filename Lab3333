@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct rod
+{
+    int val;
+    struct nod* next;
+} ROD;
+
+typedef struct nod
+{
+    int val;
+    struct nod* next;
+} NOD;
+
+
+int main()
+{
+    int aux[20];
+    ROD *s,*p, *lista=NULL;
+    int n,a;
+    int i=0;
+    FILE *f = fopen("date.txt","r");
+      FILE *g = fopen("date1.txt","r");
+    while (fscanf(f, "%d", &n) != EOF)
+    {
+// printf(" %d\n", n);
+        p = (NOD*)malloc(sizeof(NOD));
+        p->val = n;
+        p->next = NULL;
+        if(lista)
+        {
+            p->next = lista;
+        }
+        lista = p;
+    }
+     while (fscanf(g, "%d", &a) != EOF)
+    {
+// printf(" %d\n", n);
+    s = (ROD*)malloc(sizeof(ROD));
+        s->val = a;
+        s->next = NULL;
+        if(lista)
+        {
+            s->next = lista;
+        }
+        lista = s;
+    }
+
+    fclose(f);
+    p=lista;
+    while(p&&s)
+    {
+        aux[i]=p->val+s->val;
+        p = p->next;
+        s= s->next;
+        printf("\n%d",aux[i]);
+        i++;
+    }
+    return 0;
+}
